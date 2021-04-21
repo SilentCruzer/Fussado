@@ -13,10 +13,11 @@
         android:layout_marginLeft="16dp"
         android:textSize="24sp"/>
 
-    <Spinner
-        android:id="@+id/spinner"
+    <EditText
+        android:id="@+id/genreName"
+        android:hint="Enter list name"
         android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/addlistTitle"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"/>
@@ -25,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Done"
-        android:layout_below="@+id/spinner"
+        android:layout_below="@+id/genreName"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"

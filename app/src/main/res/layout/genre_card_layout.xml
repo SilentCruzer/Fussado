@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="175dp"
     android:layout_height="175dp"
-    android:elevation="10dp">
+    android:elevation="10dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginBottom="16dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
