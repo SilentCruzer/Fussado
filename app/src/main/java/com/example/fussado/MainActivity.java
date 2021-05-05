@@ -1,45 +1,67 @@
 package com.example.fussado;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.example.fussado.Adapter.genreAdapter;
-import com.example.fussado.Model.genreModel;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView  genreRecyclerView;
-    private genreAdapter genreAdapter;
+    CardView movieCard, tvShowsCard, gamesCard, booksCard;
 
-
-    private List<genreModel> genrelist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        genrelist = new ArrayList<>();
+        movieCard = findViewById(R.id.movieCard);
+        tvShowsCard = findViewById(R.id.tvShowsCard);
+        gamesCard = findViewById(R.id.gamesCard);
+        booksCard = findViewById(R.id.booksCard);
 
-        genreRecyclerView = findViewById(R.id.genreRecyclerView);
-        genreRecyclerView.setLayoutManager(new GridLayoutManager(this,2, GridLayoutManager.VERTICAL, false));
-        genreAdapter = new genreAdapter(this);
-        genreRecyclerView.setAdapter(genreAdapter);
+        movieCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(v.getContext(), MovieActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        genreModel genre = new genreModel();
-        genre.setGenre("Movies");
-        genre.setId(1);
+        tvShowsCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(v.getContext(), TVshowsActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        genrelist.add(genre);
-        genrelist.add(genre);
-        genrelist.add(genre);
+        gamesCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(v.getContext(), GamesActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        genreAdapter.setGenre(genrelist);
+        booksCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(v.getContext(), BooksActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    public static class GamesActivity extends AppCompatActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_games);
+        }
     }
 }

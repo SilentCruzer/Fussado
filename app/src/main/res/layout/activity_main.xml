@@ -6,24 +6,149 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/genreRecyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/movieCard"
+        android:layout_width="175dp"
+        android:layout_height="150dp"
+        android:elevation="10dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
+        android:layout_marginBottom="16dp">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
-        app:backgroundTint="@color/cyan"
-        android:src="@drawable/ic_add_icon"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/movieImage"
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/movie_icon"
+                />
+
+            <TextView
+                android:id="@+id/movieName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/movieImage"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Movies"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tvShowsCard"
+        android:layout_width="175dp"
+        android:layout_height="150dp"
+        android:elevation="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toRightOf="@id/movieCard">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/tvShowimageView"
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/tv_icon"
+                />
+
+            <TextView
+                android:id="@+id/tvShowName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvShowimageView"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="TV Shows"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/gamesCard"
+        android:layout_width="175dp"
+        android:layout_height="150dp"
+        android:elevation="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/movieCard">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/gamesView"
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/games_icon"
+                />
+
+            <TextView
+                android:id="@+id/gamesName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/gamesView"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Video Games"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/booksCard"
+        android:layout_width="175dp"
+        android:layout_height="150dp"
+        android:elevation="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/tvShowsCard"
+        android:layout_toRightOf="@id/gamesCard">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/bookImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/ic_book_svgrepo_com"
+                />
+
+            <TextView
+                android:id="@+id/bookName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bookImageView"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Books"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
 

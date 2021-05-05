@@ -1,54 +1,65 @@
 package com.example.fussado.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.fussado.MainActivity;
+import com.example.fussado.Model.Movie;
 import com.example.fussado.Model.genreModel;
+import com.example.fussado.MovieActivity;
 import com.example.fussado.R;
 
 import java.util.List;
 
 public class genreAdapter extends RecyclerView.Adapter<genreAdapter.ViewHolder> {
 
-    private List<genreModel> genrelist;
-    private MainActivity activity;
+    private List<Movie> moviesList;
+    private Context mContext;
 
-    public genreAdapter(MainActivity activity){
-        this.activity = activity;
+    public genreAdapter(Context mContext, List<Movie> moviesList){
+
+        this.mContext = mContext;
+        this.moviesList = moviesList;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.genre_card_layout, parent, false);
+                .inflate(R.layout.movie_card, parent, false);
         return new ViewHolder(itemView);
     }
 
     public void onBindViewHolder(ViewHolder holder, int position) {
-        genreModel item = genrelist.get(position);
-        holder.name.setText(item.getGenre());
+        Movie item = moviesList.get(position);
+        holder.name.setText(item.getName());
+        holder.rating.setText(item.getRating());
+
+        Glide.with(mContext)
+                .load("https://image.tmdb.org/t/p/w500"+item.getImage())
+                .into(holder.img);
     }
 
     public int getItemCount(){
-        return genrelist.size();
+        return moviesList.size();
 
     }
 
-    public void setGenre(List<genreModel> genrelist){
-        this.genrelist = genrelist;
-        notifyDataSetChanged();
-    }
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView name;
+        TextView name,rating;
+        ImageView img;
         ViewHolder(View view){
             super(view);
-            name = view.findViewById(R.id.genreName);
+            name = view.findViewById(R.id.movieTitle);
+            rating = view.findViewById(R.id.rating);
+            img = view.findViewById(R.id.poster);
         }
     }
 
