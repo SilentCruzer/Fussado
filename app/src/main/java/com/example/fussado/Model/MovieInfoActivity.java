@@ -47,7 +47,7 @@ public class MovieInfoActivity extends AppCompatActivity {
         movieDescription.setText(overview);
 
         Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w500"+image)
+                .load(image)
                 .into(moviePoster);
     }
 

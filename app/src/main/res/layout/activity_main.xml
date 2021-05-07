@@ -6,8 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/ExploreCard"
+        android:layout_width="175dp"
+        android:layout_height="150dp"
+        android:elevation="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ExploreImage"
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/ic_explore_icon"
+                />
+
+            <TextView
+                android:id="@+id/txtExplore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ExploreImage"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Explore"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/movieCard"
+        android:layout_below="@+id/ExploreCard"
         android:layout_width="175dp"
         android:layout_height="150dp"
         android:elevation="10dp"
@@ -43,6 +81,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/tvShowsCard"
+        android:layout_below="@id/ExploreCard"
         android:layout_width="175dp"
         android:layout_height="150dp"
         android:elevation="10dp"

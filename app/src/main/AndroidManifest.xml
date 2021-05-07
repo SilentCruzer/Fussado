@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fussado" >
+        <activity android:name=".ExploreActivity" >
+        </activity>
         <activity android:name=".Model.MovieInfoActivity" >
         </activity>
         <activity android:name=".BooksActivity" />

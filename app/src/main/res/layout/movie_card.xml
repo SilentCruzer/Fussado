@@ -3,9 +3,10 @@
     android:id="@+id/parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="175dp"
-    android:layout_height="wrap_content"
+    android:layout_width="150dp"
+    android:layout_height="225dp"
     android:layout_marginTop="16dp"
+    android:layout_marginRight="5dp"
     app:cardMaxElevation="12dp"
     android:elevation="10dp"
     app:cardCornerRadius="20dp">
@@ -16,11 +17,12 @@
 
         <ImageView
             android:id="@+id/poster"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_width="125dp"
+            android:layout_height="165dp"
             app:srcCompat="@drawable/movie_icon"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"/>
         <TextView
             android:id="@+id/movieTitle"
             android:text="Title"
@@ -31,24 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/poster"/>
 
-        <TextView
-            android:id="@+id/ratingText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="10dp"
-            android:layout_below="@id/movieTitle"
-            android:text="Rating: "
-            android:layout_centerHorizontal="true"/>
-        <TextView
-            android:text="9.0"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rating"
-            android:layout_toRightOf="@+id/ratingText"
-            android:layout_below="@id/movieTitle"/>
+
     </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

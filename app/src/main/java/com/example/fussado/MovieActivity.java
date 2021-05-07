@@ -41,82 +41,12 @@ import okhttp3.Response;
 
 public class MovieActivity extends AppCompatActivity {
 
-    RecyclerView movieRecycler;
-
-
-    private static final  String url = "";
-    private ArrayList<Movie> movieList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
-        movieRecycler = findViewById(R.id.movieRecycler);
-        movieList =new ArrayList<Movie>();
-
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                final String responseData = response.body().string();
-                MovieActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        getData(responseData);
-                    }
-                });
-            }
-        });
-
-    
-
     }
 
-
-    private void getData(String s){
-        String name = "", id ="", image = "",rating = "",year = "" ,overview = "";
-        try{
-            JSONObject jsonObject =  new JSONObject(s);
-            JSONArray jsonArray = jsonObject.getJSONArray("results");
-
-            for(int i=0;i<jsonArray.length(); i++){
-                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-
-                id = jsonObject1.getString("id");
-                name= jsonObject1.getString("title");
-                image = jsonObject1.getString("poster_path");
-                rating = jsonObject1.getString("vote_average");
-                year = jsonObject1.getString("release_date");
-                overview = jsonObject1.getString("overview");
-
-                movieList.add( new Movie(id,name,image, rating, year, overview));
-
-            }
-        } catch (JSONException e){
-            e.printStackTrace();
-        }
-        PutDataIntoRecyclerView(movieList);
-
-
-    }
-
-    private void PutDataIntoRecyclerView(List<Movie> movieList){
-        genreAdapter movieAdapter = new genreAdapter(this, movieList);
-        movieRecycler.setLayoutManager(new GridLayoutManager(this,2));
-        movieRecycler.setAdapter(movieAdapter);
-
-
-    }
 
 }

@@ -2,6 +2,7 @@ package com.example.fussado.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.fussado.MainActivity;
@@ -45,11 +47,11 @@ public class genreAdapter extends RecyclerView.Adapter<genreAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         Movie item = moviesList.get(position);
         holder.name.setText(item.getName());
-        holder.rating.setText(item.getRating());
-
+        Log.e("testing", "onBindViewHolder: ");
         Glide.with(mContext)
-                .load("https://image.tmdb.org/t/p/w500"+item.getImage())
+                .load(item.getImage())
                 .into(holder.img);
+
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,13 +74,12 @@ public class genreAdapter extends RecyclerView.Adapter<genreAdapter.ViewHolder> 
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView name,rating;
+        TextView name;
         ImageView img;
         CardView parent;
         ViewHolder(View view){
             super(view);
             name = view.findViewById(R.id.movieTitle);
-            rating = view.findViewById(R.id.rating);
             img = view.findViewById(R.id.poster);
             parent = view.findViewById(R.id.parent);
         }
