@@ -1,7 +1,32 @@
 package com.example.fussado.Model;
 
 public class Movie {
-    private String id,name, image,rating;
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public Movie(String id, String name, String image, String rating, String year, String overview) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.rating = rating;
+        this.year = year;
+        this.overview = overview;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    private String id,name, image,rating,year, overview;
 
     public String getId() {
         return id;

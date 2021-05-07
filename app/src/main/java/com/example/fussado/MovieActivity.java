@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.fussado.Model.Movie;
 import com.example.fussado.Adapter.genreAdapter;
+import com.example.fussado.Model.MovieInfoActivity;
+import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,10 +42,10 @@ import okhttp3.Response;
 public class MovieActivity extends AppCompatActivity {
 
     RecyclerView movieRecycler;
-    List<Movie> movieList;
+
 
     private static final  String url = "";
-
+    private ArrayList<Movie> movieList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,7 @@ public class MovieActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+
                 final String responseData = response.body().string();
                 MovieActivity.this.runOnUiThread(new Runnable() {
                     @Override
@@ -75,12 +79,13 @@ public class MovieActivity extends AppCompatActivity {
             }
         });
 
-
+    
 
     }
 
-    private void getData(String s){
 
+    private void getData(String s){
+        String name = "", id ="", image = "",rating = "",year = "" ,overview = "";
         try{
             JSONObject jsonObject =  new JSONObject(s);
             JSONArray jsonArray = jsonObject.getJSONArray("results");
@@ -88,20 +93,22 @@ public class MovieActivity extends AppCompatActivity {
             for(int i=0;i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
-                Movie model = new Movie();
-                model.setId(jsonObject1.getString("id"));
-                model.setName(jsonObject1.getString("title"));
-                model.setImage(jsonObject1.getString("poster_path"));
-                model.setRating(jsonObject1.getString("vote_average"));
+                id = jsonObject1.getString("id");
+                name= jsonObject1.getString("title");
+                image = jsonObject1.getString("poster_path");
+                rating = jsonObject1.getString("vote_average");
+                year = jsonObject1.getString("release_date");
+                overview = jsonObject1.getString("overview");
 
-                movieList.add(model);
-
+                movieList.add( new Movie(id,name,image, rating, year, overview));
 
             }
         } catch (JSONException e){
             e.printStackTrace();
         }
         PutDataIntoRecyclerView(movieList);
+
+
     }
 
     private void PutDataIntoRecyclerView(List<Movie> movieList){
@@ -111,4 +118,5 @@ public class MovieActivity extends AppCompatActivity {
 
 
     }
+
 }
