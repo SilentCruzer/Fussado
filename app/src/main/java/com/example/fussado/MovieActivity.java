@@ -6,15 +6,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.fussado.Model.Movie;
 import com.example.fussado.Adapter.genreAdapter;
 import com.example.fussado.Model.MovieInfoActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
@@ -41,10 +44,24 @@ import okhttp3.Response;
 
 public class MovieActivity extends AppCompatActivity {
 
+    RecyclerView movieWishRec;
+    FloatingActionButton addButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+
+        addButton = findViewById(R.id.addButton);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SearchActivity.class);
+                intent.putExtra("Key","movie");
+                startActivity(intent);
+            }
+        });
 
     }
 

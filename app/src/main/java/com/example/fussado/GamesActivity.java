@@ -9,23 +9,23 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class TVshowsActivity extends AppCompatActivity {
+public class GamesActivity extends AppCompatActivity {
 
-    RecyclerView tvWishRec;
-    FloatingActionButton addTvButton;
+    RecyclerView gamesWishRec;
+    FloatingActionButton addGamesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tvshows);
+        setContentView(R.layout.activity_games);
 
-        addTvButton = findViewById(R.id.addTvButton);
+        addGamesButton = findViewById(R.id.addGamesButton);
 
-        addTvButton.setOnClickListener(new View.OnClickListener() {
+        addGamesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SearchActivity.class);
-                intent.putExtra("Key","tv");
+                intent.putExtra("Key","game");
                 startActivity(intent);
             }
         });

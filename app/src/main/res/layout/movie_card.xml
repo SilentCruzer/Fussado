@@ -31,7 +31,9 @@
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/poster"/>
+            android:layout_below="@id/poster"
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
 
     </RelativeLayout>
