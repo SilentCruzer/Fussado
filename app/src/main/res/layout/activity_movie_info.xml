@@ -15,6 +15,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <Button
+        android:id="@+id/btnAddMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:text="Add to list"
+        android:textColor="@color/cyan"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/moviePoster" />
+
     <TextView
         android:id="@+id/MovieName"
         android:layout_width="0dp"
@@ -23,9 +35,9 @@
         android:text="Title"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/moviePoster" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAddMovie"/>
 
     <TextView
         android:id="@+id/movieYear"

@@ -10,9 +10,12 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +45,7 @@ public class SearchActivity extends AppCompatActivity {
     public String INTENT_KEY;
 
     EditText search_edit_text;
-    Button search_button;
+    ImageButton search_button;
     ProgressBar loading_indicator;
     TextView error_message;
 
@@ -66,7 +69,16 @@ public class SearchActivity extends AppCompatActivity {
 
 
         setBaseUrl();
-
+        search_edit_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                    search();
+                    return true;
+                }
+                return false;
+            }
+        });
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,14 +93,14 @@ public class SearchActivity extends AppCompatActivity {
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                String name = "", id = "", image = "", rating = "", year = "", overview = "";
+                String name = "", id = "", image = "", rating = "", year = "", overview = "", type ="";
 
                 try {
                     JSONArray items = response.getJSONArray("results");
 
                     for (int i = 0; i < items.length(); i++) {
                         JSONObject jsonObject1 = items.getJSONObject(i);
-
+                        type ="Movie";
                         id = jsonObject1.getString("id");
                         name = jsonObject1.getString("title");
                         image = "https://image.tmdb.org/t/p/w500" + jsonObject1.getString("poster_path");
@@ -100,7 +112,7 @@ public class SearchActivity extends AppCompatActivity {
                             image = "https://i.imgur.com/S8ZaF5u.png";
                         }
 
-                        searchMovies.add( new Movie(id,name,image, rating, year, overview));
+                        searchMovies.add( new Movie(id,name,image, rating, year, overview, type));
 
                     }
 
@@ -124,14 +136,14 @@ public class SearchActivity extends AppCompatActivity {
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                String name = "", id = "", image = "", rating = "", year = "", overview = "";
+                String name = "", id = "", image = "", rating = "", year = "", overview = "",type ="";
 
                 try {
                     JSONArray items = response.getJSONArray("results");
 
                     for (int i = 0; i < items.length(); i++) {
                         JSONObject jsonObject1 = items.getJSONObject(i);
-
+                        type ="TV_Show";
                         id = jsonObject1.getString("id");
                         name = jsonObject1.getString("name");
                         image = "https://image.tmdb.org/t/p/w500" + jsonObject1.getString("poster_path");
@@ -143,7 +155,7 @@ public class SearchActivity extends AppCompatActivity {
                             image = "https://i.imgur.com/S8ZaF5u.png";
                         }
 
-                        searchMovies.add( new Movie(id,name,image, rating, year, overview));
+                        searchMovies.add( new Movie(id,name,image, rating, year, overview, type));
                     }
                     PutDataIntoRecyclerView(searchMovies);
                 } catch (JSONException e) {
@@ -165,14 +177,14 @@ public class SearchActivity extends AppCompatActivity {
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                String name = "", id = "", image = "", rating = "", year = "", overview = "";
+                String name = "", id = "", image = "", rating = "", year = "", overview = "",type ="";
 
                 try {
                     JSONArray items = response.getJSONArray("results");
 
                     for (int i = 0; i < items.length(); i++) {
                         JSONObject jsonObject1 = items.getJSONObject(i);
-
+                        type ="Game";
                         id = jsonObject1.getString("slug");
                         name = jsonObject1.getString("name");
                         image = jsonObject1.getString("background_image");
@@ -184,7 +196,7 @@ public class SearchActivity extends AppCompatActivity {
                             image = "https://i.imgur.com/S8ZaF5u.png";
                         }
 
-                        searchMovies.add( new Movie(id,name,image, rating, year, overview));
+                        searchMovies.add( new Movie(id,name,image, rating, year, overview, type));
                     }
                     PutDataIntoRecyclerView(searchMovies);
                 } catch (JSONException e) {
@@ -206,7 +218,7 @@ public class SearchActivity extends AppCompatActivity {
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                String name = "", id = "", image = "", rating = "", year = "", overview = "";
+                String name = "", id = "", image = "", rating = "", year = "", overview = "", type ="";
 
                 try {
                     JSONArray items = response.getJSONArray("items");
@@ -216,7 +228,7 @@ public class SearchActivity extends AppCompatActivity {
                         JSONObject volumeInfo = jsonObject1.getJSONObject("volumeInfo");
                         try {
 
-
+                            type ="Book";
                             name = volumeInfo.getString("title");
                             image = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
                             StringBuffer str = new StringBuffer(image);
@@ -241,7 +253,7 @@ public class SearchActivity extends AppCompatActivity {
                         }
                         Log.e("asdf2", "onResponse: " + name+" "+image+" "+rating+year);
 
-                        searchMovies.add( new Movie(id,name,image, rating, year, overview));
+                        searchMovies.add( new Movie(id,name,image, rating, year, overview, type));
                     }
                     PutDataIntoRecyclerView(searchMovies);
                 } catch (JSONException e) {
@@ -320,7 +332,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void initViews(){
         search_edit_text = findViewById(R.id.search_box);
-        search_button = findViewById(R.id.search_buttton);
+        search_button = findViewById(R.id.search_button);
         loading_indicator = findViewById(R.id.loading_indicator);
         error_message = findViewById(R.id.message_display);
 

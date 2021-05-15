@@ -17,7 +17,6 @@
         <activity android:name=".ExploreActivity" />
         <activity android:name=".Model.MovieInfoActivity" />
         <activity android:name=".BooksActivity" />
-        <activity android:name=".MainActivity$GamesActivity" />
         <activity android:name=".TVshowsActivity" />
         <activity android:name=".MovieActivity" />
         <activity android:name=".SplashActivity">

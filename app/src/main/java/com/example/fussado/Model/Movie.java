@@ -1,6 +1,7 @@
 package com.example.fussado.Model;
 
 public class Movie {
+
     public String getOverview() {
         return overview;
     }
@@ -9,13 +10,22 @@ public class Movie {
         this.overview = overview;
     }
 
-    public Movie(String id, String name, String image, String rating, String year, String overview) {
+    public Movie(String id, String name, String image, String rating, String year, String overview, String type) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.rating = rating;
         this.year = year;
         this.overview = overview;
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getYear() {
@@ -26,7 +36,7 @@ public class Movie {
         this.year = year;
     }
 
-    private String id,name, image,rating,year, overview;
+    private String id,name, image,rating,year, overview,type;
 
     public String getId() {
         return id;

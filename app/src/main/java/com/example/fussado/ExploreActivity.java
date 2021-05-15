@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -119,12 +120,13 @@ public class ExploreActivity extends AppCompatActivity {
     }
 
     private  void getMovieData(String S){
-        String name = "", id ="", image = "",rating = "",year = "" ,overview = "";
+        String name = "", id ="", image = "",rating = "",year = "" ,overview = "", type ="";
         try{
             JSONObject jsonObject =  new JSONObject(S);
             JSONArray jsonArray = jsonObject.getJSONArray("results");
             for(int i=0;i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                type ="Movie";
                 id = jsonObject1.getString("id");
                 name= jsonObject1.getString("title");
                 image = "https://image.tmdb.org/t/p/w500"+jsonObject1.getString("poster_path");
@@ -133,7 +135,7 @@ public class ExploreActivity extends AppCompatActivity {
                 overview = jsonObject1.getString("overview");
 
                 Log.e("testing", "getMovieData: " + id+name+image+rating+year+overview);
-                movieList.add( new Movie(id,name,image, rating, year, overview));
+                movieList.add( new Movie(id,name,image, rating, year, overview, type));
 
             }
         } catch (JSONException e){
@@ -144,14 +146,14 @@ public class ExploreActivity extends AppCompatActivity {
     }
 
     private  void getTvData(String S){
-        String name = "", id ="", image = "",rating = "",year = "" ,overview = "";
+        String name = "", id ="", image = "",rating = "",year = "" ,overview = "", type ="";
         try{
             JSONObject jsonObject =  new JSONObject(S);
             JSONArray jsonArray = jsonObject.getJSONArray("results");
 
             for(int i=0;i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-
+                type ="Tv_Show";
                 id = jsonObject1.getString("id");
                 name= jsonObject1.getString("name");
                 image = "https://image.tmdb.org/t/p/w500"+jsonObject1.getString("poster_path");
@@ -160,7 +162,7 @@ public class ExploreActivity extends AppCompatActivity {
                 overview = jsonObject1.getString("overview");
 
                 Log.e("testing", "getMovieData: " + id+name+image+rating+year+overview);
-                tvList.add( new Movie(id,name,image, rating, year, overview));
+                tvList.add( new Movie(id,name,image, rating, year, overview, type));
 
             }
         } catch (JSONException e){
@@ -170,14 +172,14 @@ public class ExploreActivity extends AppCompatActivity {
     }
 
     private  void getBookData(String S){
-        String name = "", id ="", image = "",rating = "",year = "" ,overview = "";
+        String name = "", id ="", image = "",rating = "",year = "" ,overview = "", type ="";
         try{
             JSONObject jsonObject =  new JSONObject(S);
             JSONArray jsonArray = jsonObject.getJSONObject("results").getJSONArray("books");
 
             for(int i=0;i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-
+                type ="Book";
                 id = jsonObject1.getString("rank");
                 name= jsonObject1.getString("title");
                 image = jsonObject1.getString("book_image");
@@ -186,7 +188,7 @@ public class ExploreActivity extends AppCompatActivity {
                 overview = jsonObject1.getString("description");
 
                 Log.e("testing", "getMovieData: " + id+name+image+rating+year+overview);
-                bookList.add( new Movie(id,name,image, rating, year, overview));
+                bookList.add( new Movie(id,name,image, rating, year, overview, type));
 
 
             }
@@ -197,14 +199,14 @@ public class ExploreActivity extends AppCompatActivity {
     }
 
     private  void getGamesData(String S){
-        String name = "", id ="", image = "",rating = "",year = "" ,overview = "";
+        String name = "", id ="", image = "",rating = "",year = "" ,overview = "",type ="";
         try{
             JSONObject jsonObject =  new JSONObject(S);
             JSONArray jsonArray = jsonObject.getJSONArray("results");
 
             for(int i=0;i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-
+                type ="Game";
                 id = jsonObject1.getString("id");
                 name= jsonObject1.getString("name");
                 image = jsonObject1.getString("background_image");
@@ -213,7 +215,7 @@ public class ExploreActivity extends AppCompatActivity {
                 overview = jsonObject1.getString("playtime");
 
                 Log.e("testing", "getMovieData: " + id+name+image+rating+year+overview);
-                gameList.add( new Movie(id,name,image, rating, year, overview));
+                gameList.add( new Movie(id,name,image, rating, year, overview, type));
 
             }
         } catch (JSONException e){
@@ -242,5 +244,12 @@ public class ExploreActivity extends AppCompatActivity {
         genreAdapter movieAdapter = new genreAdapter(this, movieList);
         disGamesRecycler.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
         disGamesRecycler.setAdapter(movieAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

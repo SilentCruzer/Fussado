@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="cyan">#2196F3</color>
     <color name="splash_cyan">#1563A2</color>
+    <color name="grey">#282828</color>
+    <color name="border_grey">#181818</color>
 </resources>

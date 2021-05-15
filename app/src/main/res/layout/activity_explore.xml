@@ -13,7 +13,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/allposterView"
         android:layout_width="match_parent"
-        android:layout_height="250dp" />
+        android:layout_height="300dp" />
 
     <TextView
         android:id="@+id/discoverMovies"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/disMovieRecycler"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:text="TV Shows"
         android:textSize="24sp"/>
 
@@ -48,7 +48,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/discoverTv"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
 
     <TextView
         android:id="@+id/discoverBooks"
@@ -56,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/disTvRecycler"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:text="Books"
         android:textSize="24sp"/>
 
@@ -65,7 +66,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/discoverBooks"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
 
     <TextView
         android:id="@+id/discoverGames"
@@ -73,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/disBooksRecycler"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:text="Games"
         android:textSize="24sp"/>
 
@@ -82,7 +84,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/discoverGames"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
 
 </RelativeLayout>
 </ScrollView>

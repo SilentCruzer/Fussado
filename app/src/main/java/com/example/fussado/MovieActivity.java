@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -46,11 +47,20 @@ public class MovieActivity extends AppCompatActivity {
 
     RecyclerView movieWishRec;
     FloatingActionButton addButton;
+    ArrayList<Movie> moviesWish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+
+        moviesWish = Utils.getInstance(this).getMovies();
+        movieWishRec = findViewById(R.id.movieWishRec);
+
+        genreAdapter movieAdapter = new genreAdapter(this,moviesWish);
+        movieWishRec.setLayoutManager(new GridLayoutManager(this,2));
+        movieWishRec.setAdapter(movieAdapter);
+
 
         addButton = findViewById(R.id.addButton);
 
@@ -64,6 +74,11 @@ public class MovieActivity extends AppCompatActivity {
         });
 
     }
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 
 }

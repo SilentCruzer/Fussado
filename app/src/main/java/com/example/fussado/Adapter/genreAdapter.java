@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -57,6 +58,7 @@ public class genreAdapter extends RecyclerView.Adapter<genreAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, MovieInfoActivity.class);
+                intent.putExtra("type",moviesList.get(position).getType());
                 intent.putExtra("id",moviesList.get(position).getId());
                 intent.putExtra("title",moviesList.get(position).getName());
                 intent.putExtra("image",moviesList.get(position).getImage());
@@ -76,7 +78,7 @@ public class genreAdapter extends RecyclerView.Adapter<genreAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView name;
         ImageView img;
-        CardView parent;
+        RelativeLayout parent;
         ViewHolder(View view){
             super(view);
             name = view.findViewById(R.id.movieTitle);
