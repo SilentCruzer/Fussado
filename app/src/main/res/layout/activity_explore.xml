@@ -10,16 +10,18 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <androidx.viewpager.widget.ViewPager
+    <ViewFlipper
         android:id="@+id/allposterView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/discoverMovies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/allposterView"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="10dp"
         android:text="Movies"
         android:textSize="24sp"/>

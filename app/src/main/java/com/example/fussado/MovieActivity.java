@@ -58,7 +58,7 @@ public class MovieActivity extends AppCompatActivity {
         movieWishRec = findViewById(R.id.movieWishRec);
 
         genreAdapter movieAdapter = new genreAdapter(this,moviesWish);
-        movieWishRec.setLayoutManager(new GridLayoutManager(this,2));
+        movieWishRec.setLayoutManager(new GridLayoutManager(this,3));
         movieWishRec.setAdapter(movieAdapter);
 
 

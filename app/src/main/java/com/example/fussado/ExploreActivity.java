@@ -9,7 +9,9 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.example.fussado.Adapter.ImageAdapter;
 import com.example.fussado.Adapter.genreAdapter;
@@ -33,6 +35,7 @@ public class ExploreActivity extends AppCompatActivity {
 
     TextView discoverMovies, discoverTv, discoverBooks, discoverGames;
     RecyclerView disMovieRecycler, disTvRecycler, disBooksRecycler, disGamesRecycler;
+    ViewFlipper viewFlipper;
 
     private static final  String movieURL = "";
     private static final  String tvURL = "";
@@ -63,14 +66,29 @@ public class ExploreActivity extends AppCompatActivity {
     }
 
     private void initializeView(){
-        ViewPager viewPager = findViewById(R.id.allposterView);
-        ImageAdapter adapter = new ImageAdapter(this);
-        viewPager.setAdapter(adapter);
+        viewFlipper = findViewById(R.id.allposterView);
+        int images[] = {R.drawable.movies_banner, R.drawable.tv_banner, R.drawable.book_banner, R.drawable.games_banner};
+
+        for(int image : images){
+            flipImages(image);
+        }
 
         setAPI(movieURL);
         setAPI(tvURL);
         setAPI(bookURL);
         setAPI(gamesURL);
+    }
+
+    private void flipImages(int image){
+        ImageView imageView= new ImageView(this);
+        imageView.setBackgroundResource(image);
+
+        viewFlipper.addView(imageView);
+        viewFlipper.setFlipInterval(4000);
+        viewFlipper.setAutoStart(true);
+
+        viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
+        viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
     }
     private void initViews(){
         discoverMovies = findViewById(R.id.discoverMovies);

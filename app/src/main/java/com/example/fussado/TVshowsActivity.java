@@ -29,7 +29,7 @@ public class TVshowsActivity extends AppCompatActivity {
         tvWishRec = findViewById(R.id.tvWishRec);
 
         genreAdapter tvAdapter = new genreAdapter(this,tvShowWish);
-        tvWishRec.setLayoutManager(new GridLayoutManager(this,2));
+        tvWishRec.setLayoutManager(new GridLayoutManager(this,3));
         tvWishRec.setAdapter(tvAdapter);
 
 

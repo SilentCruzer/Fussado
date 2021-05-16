@@ -29,7 +29,7 @@ public class GamesActivity extends AppCompatActivity {
         gamesWishRec = findViewById(R.id.gamesWishRec);
 
         genreAdapter gamesAdapter = new genreAdapter(this,gamesWish);
-        gamesWishRec.setLayoutManager(new GridLayoutManager(this,2));
+        gamesWishRec.setLayoutManager(new GridLayoutManager(this,3));
         gamesWishRec.setAdapter(gamesAdapter);
 
         addGamesButton = findViewById(R.id.addGamesButton);

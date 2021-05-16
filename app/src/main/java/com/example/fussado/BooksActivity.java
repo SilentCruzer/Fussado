@@ -29,7 +29,7 @@ public class BooksActivity extends AppCompatActivity {
         booksWishRec = findViewById(R.id.booksWishRec);
 
         genreAdapter booksAdapter = new genreAdapter(this,booksWish);
-        booksWishRec.setLayoutManager(new GridLayoutManager(this,2));
+        booksWishRec.setLayoutManager(new GridLayoutManager(this,3));
         booksWishRec.setAdapter(booksAdapter);
 
         addBooksButton = findViewById(R.id.addBookButton);

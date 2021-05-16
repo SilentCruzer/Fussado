@@ -11,4 +11,5 @@
     <color name="splash_cyan">#1563A2</color>
     <color name="grey">#282828</color>
     <color name="border_grey">#181818</color>
+    <color name="shimmer_grey">#E4E2E2</color>
 </resources>

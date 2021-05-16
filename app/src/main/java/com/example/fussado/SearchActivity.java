@@ -29,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.fussado.Adapter.SearchAdapter;
 import com.example.fussado.Adapter.genreAdapter;
 import com.example.fussado.Model.Movie;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
@@ -50,6 +51,7 @@ public class SearchActivity extends AppCompatActivity {
     TextView error_message;
 
     RecyclerView mRecyclerView;
+    ShimmerFrameLayout shimmerFrameLayout;
 
     private ArrayList<Movie> searchMovies;
     private RequestQueue mRequestQueue;
@@ -73,6 +75,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                    startShimmer();
                     search();
                     return true;
                 }
@@ -82,7 +85,7 @@ public class SearchActivity extends AppCompatActivity {
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchMovies.clear();
+                startShimmer();
                 search();
             }
         });
@@ -94,7 +97,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 String name = "", id = "", image = "", rating = "", year = "", overview = "", type ="";
-
+                stopShimmer();
                 try {
                     JSONArray items = response.getJSONArray("results");
 
@@ -140,10 +143,10 @@ public class SearchActivity extends AppCompatActivity {
 
                 try {
                     JSONArray items = response.getJSONArray("results");
-
+                    stopShimmer();
                     for (int i = 0; i < items.length(); i++) {
                         JSONObject jsonObject1 = items.getJSONObject(i);
-                        type ="TV_Show";
+                        type ="Tv_Show";
                         id = jsonObject1.getString("id");
                         name = jsonObject1.getString("name");
                         image = "https://image.tmdb.org/t/p/w500" + jsonObject1.getString("poster_path");
@@ -154,7 +157,6 @@ public class SearchActivity extends AppCompatActivity {
                         if(jsonObject1.getString("poster_path").equals("null")){
                             image = "https://i.imgur.com/S8ZaF5u.png";
                         }
-
                         searchMovies.add( new Movie(id,name,image, rating, year, overview, type));
                     }
                     PutDataIntoRecyclerView(searchMovies);
@@ -178,7 +180,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 String name = "", id = "", image = "", rating = "", year = "", overview = "",type ="";
-
+                stopShimmer();
                 try {
                     JSONArray items = response.getJSONArray("results");
 
@@ -219,7 +221,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 String name = "", id = "", image = "", rating = "", year = "", overview = "", type ="";
-
+                stopShimmer();
                 try {
                     JSONArray items = response.getJSONArray("items");
 
@@ -330,11 +332,24 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    private void startShimmer(){
+        searchMovies.clear();
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
+        shimmerFrameLayout.startShimmerAnimation();
+    }
+
+    private void stopShimmer(){
+        searchMovies.clear();
+        shimmerFrameLayout.stopShimmerAnimation();
+        shimmerFrameLayout.setVisibility(View.GONE);
+    }
+
     private void initViews(){
         search_edit_text = findViewById(R.id.search_box);
         search_button = findViewById(R.id.search_button);
         loading_indicator = findViewById(R.id.loading_indicator);
         error_message = findViewById(R.id.message_display);
+        shimmerFrameLayout = findViewById(R.id.shimmerSearch);
 
     }
 }

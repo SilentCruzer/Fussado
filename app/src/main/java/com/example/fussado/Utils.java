@@ -205,7 +205,7 @@ public class Utils {
     }
 
     public boolean removeFromGames(Movie game){
-        ArrayList<Movie> games = getBooks();
+        ArrayList<Movie> games = getGames();
         if(games != null){
             for(Movie b: games){
                 if(b.getId().equals(game.getId())){
